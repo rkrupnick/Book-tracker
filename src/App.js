@@ -7,7 +7,7 @@ import "./App.css";
 class App extends Component {
   state = {
     books: [],
-    shelf: this.props.shelf,
+    //shelf: this.props.shelf,
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -27,6 +27,7 @@ class App extends Component {
     this.setState({ shelf: event.target.value });
     console.log(this);
   };
+
   render() {
     return (
       <div className="App">
