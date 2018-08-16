@@ -5,6 +5,12 @@ class Book extends Component {
     shelf: this.props.book.shelf
   };
 
+  handleChange = (event, book) => {
+    this.setState({ shelf: event.target.value });
+    this.props.updateShelf(book, event.target.value);
+    console.log(this);
+  };
+
   render() {
     const { book } = this.props;
 
@@ -20,7 +26,10 @@ class Book extends Component {
             }}
           />
           <div className="book-shelf-changer">
-            <select value={this.state.shelf}>
+            <select
+              value={this.state.shelf}
+              onChange={event => this.handleChange(event, book)}
+            >
               <option value="move" disabled>
                 Move to...
               </option>

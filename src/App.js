@@ -17,20 +17,25 @@ class App extends Component {
   };
 
   componentDidMount() {
+    this.getBooks();
+  }
+
+  getBooks = () => {
     BooksAPI.getAll().then(books => {
       this.setState({ books });
     });
-  }
+  };
 
-  handleChange = event => {
-    this.setState({ shelf: event.target.value });
-    console.log(this);
+  updateShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(response => {
+      this.getBooks();
+    });
   };
 
   render() {
     return (
       <div className="App">
-        <BookShelves books={this.state.books} />
+        <BookShelves books={this.state.books} updateShelf={this.updateShelf} />
       </div>
     );
   }
