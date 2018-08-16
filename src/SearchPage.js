@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Book from './Book';
+import escapeRegExp from 'escape-string-regexp';
+import { IconContext } from 'react-icons';
+import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 class SearchPage extends Component {
@@ -15,19 +18,27 @@ class SearchPage extends Component {
     const { books, searchBooks } = this.props;
 
     const updateQuery = query => {
-      this.setState({ query: query.trim() });
-      searchBooks(query);
+      if (query) {
+        query = escapeRegExp(query);
+        this.setState({ query: query.trim() });
+        searchBooks(query);
+      }
     };
 
     return (
       <div className="search-page">
         <input
           type="text"
+          placeholder="Search here"
           className="search-bar"
           value={this.state.query}
           onChange={event => updateQuery(event.target.value)}
         />
-        <Link to="/">Home</Link>
+        <Link to="/">
+          <IconContext.Provider value={{ color: '#48f', size: '2em' }}>
+            <FaArrowLeft className="left-arrow" />
+          </IconContext.Provider>
+        </Link>
 
         <ul>
           {books ? (

@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import BookShelves from './BookShelves';
 import SearchPage from './SearchPage';
+import { IconContext } from 'react-icons';
 import { FaPlusCircle } from 'react-icons/fa';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
@@ -46,7 +47,9 @@ class App extends Component {
               <nav>
                 <h1>Book Shelves</h1>
                 <Link to="/search" className="search-link">
-                  <FaPlusCircle /> Add More Books!
+                  <IconContext.Provider value={{ color: 'blue', size: '2em' }}>
+                    <FaPlusCircle /> Add More Books!
+                  </IconContext.Provider>
                 </Link>
               </nav>
               <BookShelves
