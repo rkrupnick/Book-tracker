@@ -26,6 +26,7 @@ class Book extends Component {
           />
           <div className="book-shelf-changer">
             <select
+              className="book-shelf-select"
               value={this.state.shelf ? this.state.shelf : 'none'}
               onChange={event => this.handleChange(event, book)}
             >

@@ -3,12 +3,14 @@ import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import BookShelves from './BookShelves';
 import SearchPage from './SearchPage';
+import { FaPlusCircle } from 'react-icons/fa';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
 
 class App extends Component {
   state = {
-    books: []
+    books: [],
+    bookResults: []
   };
 
   componentDidMount() {
@@ -28,9 +30,8 @@ class App extends Component {
   };
 
   searchBooks = query => {
-    BooksAPI.search(query).then(books => {
-      this.setState({ books });
-      console.log(books);
+    BooksAPI.search(query).then(bookResults => {
+      this.setState({ bookResults });
     });
   };
 
@@ -45,7 +46,7 @@ class App extends Component {
               <nav>
                 <h1>Book Shelves</h1>
                 <Link to="/search" className="search-link">
-                  Search
+                  <FaPlusCircle /> Add More Books!
                 </Link>
               </nav>
               <BookShelves
@@ -62,7 +63,7 @@ class App extends Component {
           render={() => (
             <div className="search-page">
               <SearchPage
-                books={this.state.books}
+                books={this.state.bookResults}
                 searchBooks={this.searchBooks}
                 updateShelf={this.updateShelf}
               />

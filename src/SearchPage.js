@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import Book from './Book';
-import * as BooksAPI from './BooksAPI';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import escapeRegExp from 'escape-string-regexp';
-import sortBy from 'sort-by';
 
 class SearchPage extends Component {
-  static propTypes = {
-    books: PropTypes.array.isRequired
-  };
-
   state = {
     query: ''
   };
@@ -38,11 +30,15 @@ class SearchPage extends Component {
         <Link to="/">Home</Link>
 
         <ul>
-          {books.map(book => (
-            <li key={book.id}>
-              <Book book={book} updateShelf={this.props.updateShelf} />
-            </li>
-          ))}
+          {books ? (
+            books.map(book => (
+              <li key={book.id}>
+                <Book book={book} updateShelf={this.props.updateShelf} />
+              </li>
+            ))
+          ) : (
+            <p>Search for books!</p>
+          )}
         </ul>
       </div>
     );

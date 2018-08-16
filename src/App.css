@@ -1,24 +1,29 @@
+/****** Body ******/
+body {
+  max-width: 700px;
+  margin: auto;
+}
+
 /***** Header *****/
 
 nav {
-  display: flex;
   border: 10px #b84 solid;
   border-style: inset;
 }
 
 .search-link {
-  float: right;
   text-decoration: none;
 }
 
 /*********** Book Shelves *****/
 
 .shelf {
-  border: 10px #b84 solid;
+  border: 15px #b84 solid;
   border-style: inset;
 }
 
-ol {
+ol,
+ul {
   display: flex;
   flex-wrap: wrap;
 }
@@ -40,4 +45,24 @@ ol {
 .search-bar {
   width: 100%;
   height: 40px;
+}
+
+/****** Books *******/
+.book-shelf-changer {
+  width: 100px;
+}
+
+.book-shelf-select {
+  background-color: lavender;
+}
+
+.book-shelf-select:after {
+  position: absolute;
+  content: '';
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
 }
