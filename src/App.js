@@ -1,21 +1,14 @@
-import React, { Component } from "react";
-import { Route } from "react-router-dom";
-import BookShelves from "./BookShelves";
-import SearchPage from "./SearchPage";
-import * as BooksAPI from "./BooksAPI";
-import "./App.css";
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import BookShelves from './BookShelves';
+import SearchPage from './SearchPage';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
 
 class App extends Component {
   state = {
-    books: [],
-    //shelf: this.props.shelf,
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false
+    books: []
   };
 
   componentDidMount() {
@@ -34,6 +27,13 @@ class App extends Component {
     });
   };
 
+  searchBooks = query => {
+    BooksAPI.search(query).then(books => {
+      this.setState({ books });
+      console.log(books);
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -44,9 +44,9 @@ class App extends Component {
             <div className="my-books">
               <nav>
                 <h1>Book Shelves</h1>
-                <a href="/search" className="search-link">
+                <Link to="/search" className="search-link">
                   Search
-                </a>
+                </Link>
               </nav>
               <BookShelves
                 books={this.state.books}
@@ -61,7 +61,11 @@ class App extends Component {
           path="/search"
           render={() => (
             <div className="search-page">
-              <SearchPage books={this.state.books} />
+              <SearchPage
+                books={this.state.books}
+                searchBooks={this.searchBooks}
+                updateShelf={this.updateShelf}
+              />
             </div>
           )}
         />

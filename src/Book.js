@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Book extends Component {
   state = {
@@ -8,7 +8,6 @@ class Book extends Component {
   handleChange = (event, book) => {
     this.setState({ shelf: event.target.value });
     this.props.updateShelf(book, event.target.value);
-    console.log(this);
   };
 
   render() {
@@ -27,7 +26,7 @@ class Book extends Component {
           />
           <div className="book-shelf-changer">
             <select
-              value={this.state.shelf}
+              value={this.state.shelf ? this.state.shelf : 'none'}
               onChange={event => this.handleChange(event, book)}
             >
               <option value="move" disabled>
@@ -42,11 +41,12 @@ class Book extends Component {
         </div>
         <div className="book-title">{book.name}</div>
         <div className="book-authors">
-          {book.authors.map(author => (
-            <p key={author} className="author">
-              {author}
-            </p>
-          ))}
+          {book.authors &&
+            book.authors.map(author => (
+              <p key={author} className="author">
+                {author}
+              </p>
+            ))}
         </div>
       </div>
     );
