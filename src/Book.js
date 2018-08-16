@@ -12,6 +12,12 @@ class Book extends Component {
 
   render() {
     const { book } = this.props;
+    let bookImage;
+    if (book.imageLinks) {
+      bookImage = book.imageLinks.smallThumbnail;
+    } else {
+      bookImage = 'https://via.placeholder.com/128x193';
+    }
 
     return (
       <div className="book">
@@ -21,7 +27,7 @@ class Book extends Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${book.imageLinks.smallThumbnail})`
+              backgroundImage: `url(${bookImage})`
             }}
           />
           <div className="book-shelf-changer">
