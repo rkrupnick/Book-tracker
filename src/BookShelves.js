@@ -11,10 +11,6 @@ class BookShelves extends Component {
     const read = books.filter(book => book.shelf === "read");
     const wantToRead = books.filter(book => book.shelf === "wantToRead");
 
-    // state = {
-    // shelf: this.props.book.shelf
-    //};
-
     return (
       <div className="book-shelves">
         <div id="currentlyReading" className="shelf">

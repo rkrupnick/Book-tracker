@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import BookShelves from "./BookShelves";
+import SearchPage from "./SearchPage";
 import * as BooksAPI from "./BooksAPI";
 import "./App.css";
 
@@ -35,7 +37,34 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <BookShelves books={this.state.books} updateShelf={this.updateShelf} />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <div className="my-books">
+              <nav>
+                <h1>Book Shelves</h1>
+                <a href="/search" className="search-link">
+                  Search
+                </a>
+              </nav>
+              <BookShelves
+                books={this.state.books}
+                updateShelf={this.updateShelf}
+              />
+            </div>
+          )}
+        />
+
+        <Route
+          exact
+          path="/search"
+          render={() => (
+            <div className="search-page">
+              <SearchPage books={this.state.books} />
+            </div>
+          )}
+        />
       </div>
     );
   }

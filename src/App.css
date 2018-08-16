@@ -1,3 +1,17 @@
+/***** Header *****/
+
+nav {
+  display: flex;
+}
+
+.search-link {
+  float: right;
+  margin-bottom: -30px;
+  text-decoration: none;
+}
+
+/*********** Book Shelves *****/
+
 .shelf {
   border: 10px #b84 solid;
   border-style: inset;
