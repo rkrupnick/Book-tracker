@@ -10,3 +10,11 @@ ol {
 .book-cover {
   margin: 0 60px 20px 0;
 }
+
+.author {
+  margin: 3px;
+}
+
+.book-title {
+  font-weight: bold;
+}
