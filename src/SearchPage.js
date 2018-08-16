@@ -20,7 +20,7 @@ class SearchPage extends Component {
     const updateQuery = query => {
       if (query) {
         query = escapeRegExp(query);
-        this.setState({ query: query.trim() });
+        this.setState({ query });
         searchBooks(query);
       }
     };
