@@ -28,6 +28,10 @@ ul {
   flex-wrap: wrap;
 }
 
+li {
+  list-style: none;
+}
+
 .book-cover {
   margin: 0 60px 20px 0;
 }
@@ -55,21 +59,42 @@ ul {
 }
 
 /****** Books *******/
+
+.book-top {
+  margin-bottom: -55px;
+}
+
 .book-shelf-changer {
-  width: 100px;
+  position: relative;
+  bottom: 70px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #60ac5d;
+  background-image: url('./icons/arrow-drop-down.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.book-shelf-changer select {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
 
-.book-shelf-select {
-  background-color: lavender;
+.book-authors {
+  font-size: 0.9em;
+  padding: 0 0 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 128px;
 }
 
-.book-shelf-select:after {
-  position: absolute;
-  content: '';
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
+.book-title {
+  padding: 10px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 128px;
 }
