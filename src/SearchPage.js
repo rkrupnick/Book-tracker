@@ -40,17 +40,18 @@ class SearchPage extends Component {
           </IconContext.Provider>
         </Link>
 
-        <ul>
-          {books ? (
+        <ol>
+          {books.length > 0 &&
             books.map(book => (
               <li key={book.id}>
                 <Book book={book} updateShelf={this.props.updateShelf} />
               </li>
-            ))
-          ) : (
-            <p>Search for books!</p>
-          )}
-        </ul>
+            ))}
+
+          {books.length < 1 && !this.state.query && <p>Search to add books!</p>}
+          {books.length < 1 &&
+            this.state.query && <p>No books match your search, try again!</p>}
+        </ol>
       </div>
     );
   }

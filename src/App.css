@@ -6,6 +6,11 @@ body {
 
 /***** Header *****/
 
+h1 {
+  display: inline-block;
+  padding-left: 20px;
+}
+
 nav {
   border: 10px #b84 solid;
   border-style: inset;
@@ -13,9 +18,16 @@ nav {
 
 .search-link {
   text-decoration: none;
+  float: right;
+  padding-top: 20px;
 }
 
 /*********** Book Shelves *****/
+
+h2 {
+  padding-left: 20px;
+  border-bottom: 6px solid #b84;
+}
 
 .shelf {
   border: 15px #b84 solid;
@@ -67,6 +79,7 @@ li {
 .book-shelf-changer {
   position: relative;
   bottom: 70px;
+  left: 5px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -97,4 +110,14 @@ li {
   display: flex;
   flex-wrap: wrap;
   width: 128px;
+}
+
+.successful-move {
+  position: absolute;
+  width: 108px;
+  background-color: grey;
+  padding: 10px;
+  font-size: 0.9em;
+  opacity: 0.9;
+  color: lavender;
 }

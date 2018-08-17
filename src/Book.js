@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 
 class Book extends Component {
   state = {
-    shelf: this.props.book.shelf
+    shelf: this.props.book.shelf,
+    successfulMove: false
   };
 
   handleChange = (event, book) => {
     this.setState({ shelf: event.target.value });
     this.props.updateShelf(book, event.target.value);
+    this.setState({ successfulMove: true });
   };
 
   render() {
@@ -22,6 +24,9 @@ class Book extends Component {
     return (
       <div className="book">
         <div className="book-top">
+          {this.state.successfulMove && (
+            <div className="successful-move">This book has been moved!</div>
+          )}
           <div
             className="book-cover"
             style={{
@@ -30,6 +35,7 @@ class Book extends Component {
               backgroundImage: `url(${bookImage})`
             }}
           />
+
           <div className="book-shelf-changer">
             <select
               className="book-shelf-select"
@@ -46,6 +52,7 @@ class Book extends Component {
             </select>
           </div>
         </div>
+
         <div className="book-title">{book.title}</div>
         <div className="book-authors">
           {book.authors &&
