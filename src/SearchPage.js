@@ -22,6 +22,8 @@ class SearchPage extends Component {
         query = escapeRegExp(query);
         this.setState({ query });
         searchBooks(query);
+      } else {
+        this.clearQuery();
       }
     };
 
