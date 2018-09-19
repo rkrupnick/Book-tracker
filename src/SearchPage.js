@@ -3,25 +3,37 @@ import Book from './Book';
 import escapeRegExp from 'escape-string-regexp';
 import { IconContext } from 'react-icons';
 import { FaArrowLeft } from 'react-icons/fa';
+import * as BooksAPI from './BooksAPI';
 import { Link } from 'react-router-dom';
 
 class SearchPage extends Component {
   state = {
-    query: ''
+    query: '',
+    books: []
+  };
+
+  searchBooks = query => {
+    BooksAPI.search(query).then(books => {
+      this.setState({ books });
+    });
   };
 
   clearQuery = () => {
-    this.setState({ query: '' });
+    this.setState({
+      query: '',
+      books: []
+    });
   };
 
   render() {
-    const { books, searchBooks } = this.props;
+    const books = this.state.books;
+
 
     const updateQuery = query => {
       if (query) {
         query = escapeRegExp(query);
         this.setState({ query });
-        searchBooks(query);
+        this.searchBooks(query);
       } else {
         this.clearQuery();
       }

@@ -30,11 +30,7 @@ class App extends Component {
     });
   };
 
-  searchBooks = query => {
-    BooksAPI.search(query).then(bookResults => {
-      this.setState({ bookResults });
-    });
-  };
+
 
   render() {
     return (
