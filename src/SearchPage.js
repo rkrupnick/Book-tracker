@@ -12,8 +12,19 @@ class SearchPage extends Component {
     books: []
   };
 
+  updateQuery = query => {
+      if (query) {
+        query = escapeRegExp(query);
+        this.setState({ query });
+        this.searchBooks(query);
+      } else {
+        this.clearQuery();
+      }
+    };
+
   searchBooks = query => {
     BooksAPI.search(query).then(books => {
+      this.addShelf(books);
       this.setState({ books });
     });
   };
@@ -25,19 +36,19 @@ class SearchPage extends Component {
     });
   };
 
+  addShelf = (searchedBooks) => {
+    searchedBooks.forEach((book) => {
+      let ub = this.props.allBooks.find((userBook) => {
+        return userBook.id === book.id;
+      });
+
+      ub ? book.shelf = ub.shelf : book.shelf = 'none';
+    })
+  }
+
   render() {
     const books = this.state.books;
 
-
-    const updateQuery = query => {
-      if (query) {
-        query = escapeRegExp(query);
-        this.setState({ query });
-        this.searchBooks(query);
-      } else {
-        this.clearQuery();
-      }
-    };
 
     return (
       <div className="search-page">
@@ -46,7 +57,7 @@ class SearchPage extends Component {
           placeholder="Search here"
           className="search-bar"
           value={this.state.query}
-          onChange={event => updateQuery(event.target.value)}
+          onChange={event => this.updateQuery(event.target.value)}
         />
         <Link to="/">
           <IconContext.Provider value={{ color: '#48f', size: '2em' }}>
@@ -58,7 +69,7 @@ class SearchPage extends Component {
           {books.length > 0 &&
             books.map(book => (
               <li key={book.id}>
-                <Book book={book} updateShelf={this.props.updateShelf} />
+                <Book book={book} updateShelf={this.props.updateShelf}/>
               </li>
             ))}
 

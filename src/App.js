@@ -11,14 +11,14 @@ import './App.css';
 class App extends Component {
   state = {
     books: [],
-    bookResults: []
+    bookResults: [],
   };
 
   componentDidMount() {
-    this.getBooks();
+    this.getAllBooks();
   }
 
-  getBooks = () => {
+  getAllBooks = () => {
     BooksAPI.getAll().then(books => {
       this.setState({ books });
     });
@@ -26,11 +26,21 @@ class App extends Component {
 
   updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(response => {
-      this.getBooks();
+      this.getAllBooks();
     });
   };
 
+  showSearchPage = () => {
+    this.setState({ showSearchPage: true})
+  }
 
+  checkForShelf = (bookID) => {
+    let b = this.state.books.find((book) => {
+      return book.id === bookID
+    });
+
+    return b ? b.shelf : 'none';
+  }
 
   render() {
     return (
@@ -62,9 +72,9 @@ class App extends Component {
           render={() => (
             <div className="search-page">
               <SearchPage
-                books={this.state.bookResults}
-                searchBooks={this.searchBooks}
+                allBooks={this.state.books}
                 updateShelf={this.updateShelf}
+                checkForShelf={this.checkForShelf}
               />
             </div>
           )}

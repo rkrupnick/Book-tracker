@@ -29,7 +29,7 @@ class BookShelves extends Component {
           <ol>
             {wantToRead.map(book => (
               <li key={book.id}>
-                <Book book={book} updateShelf={this.props.updateShelf} />
+                <Book book={book} updateShelf={this.props.updateShelf}/>
               </li>
             ))}
           </ol>
