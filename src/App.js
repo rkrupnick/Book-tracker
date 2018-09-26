@@ -30,10 +30,6 @@ class App extends Component {
     });
   };
 
-  showSearchPage = () => {
-    this.setState({ showSearchPage: true})
-  }
-
   checkForShelf = (bookID) => {
     let b = this.state.books.find((book) => {
       return book.id === bookID
