@@ -2,6 +2,9 @@
 
 ## Created with React
 
+### About
+This is a book tracker app that allows the user to add new books, and sort them in various ways.
+
 ### How to Run this App
 
 1. Download the files
